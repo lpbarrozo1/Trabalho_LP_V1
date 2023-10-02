@@ -54,15 +54,10 @@ def cadastro():
         if password != confpassword:
             return "As senhas não coincidem."
 
-        # Outras validações podem ser adicionadas aqui, como verificar o formato do email,
-        # a força da senha, etc.
-
-        # Se a validação for bem-sucedida, redirecione para a rota 'sucesso'
         return redirect(url_for('sucesso'))
 
     return render_template('cadastro.html')
-        #return redirect(url_for('t_index'))
-   # return render_template('cadastro.html')
+
 
 @meu_site.route('/sucesso', methods=['GET'])
 def sucesso():

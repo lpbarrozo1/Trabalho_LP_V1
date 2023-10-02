@@ -74,22 +74,22 @@
 
     if (senha !== confSenha) {
       alert("As senhas não coincidem.");
-      return false; // Impedir o envio do formulário
+      return false;
     }
 
     if (senha.length < 6 || !/[A-Z]/.test(senha) || !/\d/.test(senha) || !/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(senha)) {
       alert("A senha deve atender aos seguintes critérios:\n- Deve conter pelo menos 6 caracteres.\n- Deve conter pelo menos 1 letra maiúscula.\n- Deve conter pelo menos 1 número.\n- Deve conter pelo menos 1 caractere especial.");
-      return false; // Impedir o envio do formulário
+      return false; 
     }
 
     if (email !== confEmail) {
       alert("Os endereços de email não coincidem.");
-      return false; // Impedir o envio do formulário
+      return false; 
     }
 
-    // Se a verificação for bem-sucedida, redirecione para a página de sucesso
+    
     window.location.href = "/sucesso";
-    return false; // Impedir o envio do formulário (para garantir que o redirecionamento ocorra primeiro)
+    return false; 
   }
 </script>
 {% endblock %}
