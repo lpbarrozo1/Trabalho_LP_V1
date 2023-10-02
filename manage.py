@@ -30,21 +30,44 @@ def autenticar():
 def cadastro():
     if request.method == 'POST':
         nome = request.form['nome']
-        email = request.form['email']
-        cofemail = request.form['confEmail']
+        email = request.form['txtEmail']  
+        cofemail = request.form['confEmail']  
         password = request.form['password']
         confpassword = request.form['confpassword']
-        dn=request.form['dn']
-        cpf=request.form['cpf']
-        endereco = request.form['endereco']
+        dn = request.form['dn']
+        cpf = request.form['cpf']
+        cep = request.form['cep']  
+        rua = request.form['rua']  
+        num_res = request.form['num_res']  
+        bairro = request.form['bairro']  
+        cidade = request.form['cidade']  
+        estado = request.form['estado']  
         tel = request.form['tel']
         genero = request.form['genero']
-        return redirect(url_for('t_index'))
-    return render_template('cadastro.html')
+        if not nome or not email or not password or not confpassword:
+            return "Por favor, preencha todos os campos obrigatórios."
 
-@meu_site.route('/sucesso')
+        if email != cofemail:
+            return "Os endereços de email não coincidem."
+
+
+        if password != confpassword:
+            return "As senhas não coincidem."
+
+        # Outras validações podem ser adicionadas aqui, como verificar o formato do email,
+        # a força da senha, etc.
+
+        # Se a validação for bem-sucedida, redirecione para a rota 'sucesso'
+        return redirect(url_for('sucesso'))
+
+    return render_template('cadastro.html')
+        #return redirect(url_for('t_index'))
+   # return render_template('cadastro.html')
+
+@meu_site.route('/sucesso', methods=['GET'])
 def sucesso():
-    return f"Parabéns! Cadastro realizado com sucesso!"
+    return "Parabéns! Cadastro realizado com sucesso!"
+
 
 if __name__ == "__main__":
     meu_site.run(port=8080, debug=True)

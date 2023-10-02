@@ -2,108 +2,94 @@
 {% block title %}Cadastro{% endblock %}
 {% block conteudo %}
 <div class="row justify-content-center">
-  <form method="POST" action="/cadastro" class="col-sm-10 col-md-8 col-lg-7">
+  <form method="POST" action="/cadastro" class="col-sm-10 col-md-8 col-lg-7 onsubmit="return verificarSenhaEmail();">
       <h1 class="display-4">Cadastro de Usuário</h1>
-      <div class="form-floating mb-6">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="nome">Insira seu nome completo:</label>
-            <input type="text" id="nome" class="form-control" placeholder="" autofocus>
-          </div>
+      <div class="form-group">
+        <label for="nome">Nome Completo</label>
+        <input type="text" id="nome" name="nome" class="form-control" placeholder="Insira seu nome completo" autofocus>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="txtEmail">Endereço de Email</label>
+          <input type="email" id="txtEmail" name="txtEmail" class="form-control" placeholder="exemplo@mail.com" autofocus>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="txtemail">Insira um endereço de email:</label>
-            <input type="email" id="txtEmail" class="form-control" placeholder="exemplo@mail.com" autofocus>
-          </div>
-          
-          <div class="form-group col-md-6">
-            <label for="confEmail">Confirme o endereço de email:</label>
-            <input type="email" id="confEmail" class="form-control" placeholder="exemplo@mail.com" autofocus>
-          </div>
+        <div class="form-group col-md-6">
+          <label for="confEmail">Confirme o Email</label>
+          <input type="email" id="confEmail" name="confEmail" class="form-control" placeholder="exemplo@mail.com" autofocus>
         </div>
-        
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="password">Cadastre uma senha:</label>
-            <input type="password" id="password" class="form-control" placeholder="" autofocus>
-          </div>
-    
-          <div class="form-group col-md-6">
-            <label for="confpassword">Confirme a senha:</label>
-            <input type="password" id="confpassword" class="form-control" placeholder="" autofocus>
-          </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="password">Senha</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Cadastre uma senha" autofocus>
         </div>
-
-        <div class="form-check">
-          <button type="button" class="btn btn-lg btn-info" onclick="verificarSenha()">Verificar Senha e e-mail</button>
-        </div>  
-          <script>
-            function verificarSenha() {
-                var senha = document.getElementById("password").value;
-                var confSenha = document.getElementById("confpassword").value;
-                var email = document.getElementById("email").value;
-                var confEmail = document.getElementById("confEmail").value;
-          
-                if (senha !== confSenha) {
-                    alert("As senhas não coincidem.");
-                    return;
-                }
-          
-                if (senha.length < 6 || !/[A-Z]/.test(senha) || !/\d/.test(senha) || !/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(senha)) {
-                    alert("A senha deve atender aos seguintes critérios:\n- Deve conter pelo menos 6 caracteres.\n- Deve conter pelo menos 1 letra maiúscula.\n- Deve conter pelo menos 1 número.\n- Deve conter pelo menos 1 caractere especial.");
-                    return;
-                }
-          
-                if (email !== confEmail) {
-                    alert("Os endereços de email não coincidem.");
-                    return;
-                }
-          
-                alert("Senha válida e endereço de email confirmado!");
-            }
-          </script>
-        <div class="form-group">
-          <label for="dn">Insira sua data de nascimento:</label>
-          <input type="date" id="dn" class="form-control" placeholder="" autofocus>
+        <div class="form-group col-md-6">
+          <label for="confpassword">Confirme a Senha</label>
+          <input type="password" id="confpassword" name="confpassword" class="form-control" placeholder="Confirme a senha" autofocus>
         </div>
-      
-        <div class="form-group">
-          <label for="cpf">Insira seu CPF:</label>
-          <input type="text" id="cpf" class="form-control" placeholder="xxx.xxx.xxx-xx" autofocus>
-        </div>
-      
-        <div class="form-group">
-          <label for="encereco">Insira seu endereço:</label>
-          <input type="text" id="cep" placeholder="CEP" class="form-control" placeholder="" autofocus>
-          <input type="text" id="rua" placeholder="Rua" class="form-control" placeholder="" autofocus>
-          <input type="text" id="num_res" placeholder="Número" class="form-control" placeholder="" autofocus>
-          <input type="text" id="bairro" placeholder="Bairro" class="form-control" placeholder="" autofocus>
-          <input type="text" id="cidade" placeholder="Cidade" class="form-control" placeholder="" autofocus>
-          <input type="text" id="estado" placeholder="Estado" class="form-control" placeholder="" autofocus>
-        </div>
-      
-        <div class="form-group">
-          <label for="tel">Insira seu telefone com DDD:</label>
-          <input type="text" id="tel" class="form-control" placeholder="(xx)xxxxx-xxxx" autofocus>
-        </div>
-      
-        <div class="form-group">
-          <label for="genero">Escolha seu gênero:</label>
-          <select id="genero" required>
-            <option value="">Selecione...</option>
-            <option value="masculino">Masculino</option>
-            <option value="feminino">Feminino</option>
-            <option value="nao_identificar">Prefiro não identificar</option>
-          </select>
-        </div>
-      
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-lg btn-danger btn-block">Limpar Formulário</button>
-          <button type="submit" class="btn btn-lg btn-success btn-block">Enviar</button>
-        </div>
+      </div>
+      <div class="form-group">
+        <label for="dn">Data de Nascimento</label>
+        <input type="date" id="dn" name="dn" class="form-control" placeholder="Insira sua data de nascimento" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input type="text" id="cpf" name="cpf" class="form-control" placeholder="xxx.xxx.xxx-xx" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="cep">Endereço</label>
+        <input type="text" id="cep" name="cep" placeholder="CEP" class="form-control" placeholder="CEP" autofocus>
+        <input type="text" id="rua" name="rua" placeholder="Rua" class="form-control" placeholder="Rua" autofocus>
+        <input type="text" id="num_res" name="num_res" placeholder="Número" class="form-control" placeholder="Número" autofocus>
+        <input type="text" id="bairro" name="bairro" placeholder="Bairro" class="form-control" placeholder="Bairro" autofocus>
+        <input type="text" id="cidade" name="cidade" placeholder="Cidade" class="form-control" placeholder="Cidade" autofocus>
+        <input type="text" id="estado" name="estado" placeholder="Estado" class="form-control" placeholder="Estado" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="tel">Telefone com DDD</label>
+        <input type="text" id="tel" name="tel" class="form-control" placeholder="(xx)xxxxx-xxxx" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="genero">Gênero</label>
+        <select id="genero" name="genero" class="form-control" required>
+          <option value="">Selecione...</option>
+          <option value="masculino">Masculino</option>
+          <option value="feminino">Feminino</option>
+          <option value="nao_identificar">Prefiro não identificar</option>
+        </select>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="reset" class="btn btn-danger btn-lg btn-block">Limpar Formulário</button>
+        <button type="submit" class="btn btn-success btn-lg btn-block">Enviar</button>
       </div>
   </form>
 </div>
 
-{% endblock %}  
+<script>
+  function verificarSenhaEmail() {
+    var senha = document.getElementById("password").value;
+    var confSenha = document.getElementById("confpassword").value;
+    var email = document.getElementById("txtEmail").value;
+    var confEmail = document.getElementById("confEmail").value;
+
+    if (senha !== confSenha) {
+      alert("As senhas não coincidem.");
+      return false; // Impedir o envio do formulário
+    }
+
+    if (senha.length < 6 || !/[A-Z]/.test(senha) || !/\d/.test(senha) || !/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(senha)) {
+      alert("A senha deve atender aos seguintes critérios:\n- Deve conter pelo menos 6 caracteres.\n- Deve conter pelo menos 1 letra maiúscula.\n- Deve conter pelo menos 1 número.\n- Deve conter pelo menos 1 caractere especial.");
+      return false; // Impedir o envio do formulário
+    }
+
+    if (email !== confEmail) {
+      alert("Os endereços de email não coincidem.");
+      return false; // Impedir o envio do formulário
+    }
+
+    // Se a verificação for bem-sucedida, redirecione para a página de sucesso
+    window.location.href = "/sucesso";
+    return false; // Impedir o envio do formulário (para garantir que o redirecionamento ocorra primeiro)
+  }
+</script>
+{% endblock %}
