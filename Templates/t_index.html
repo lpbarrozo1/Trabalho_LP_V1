@@ -2,6 +2,9 @@
 {% block title %}Home{% endblock %}
 {% block conteudo %}
 <div class="row justify-content-center ">
-    <h1 class="display-4">Seja bem-vindo(a) {{nome}}</h2> 
+    <div class="container">
+        <h1 class="display-4">Seja bem-vindo(a) {{nome}}</h2> 
+        <img src="{{ url_for('static', filename='img/capa.jpg') }}" alt="Foto da Usuária" class="img-fluid">
+    </div>
 </div>
 {% endblock %}  
